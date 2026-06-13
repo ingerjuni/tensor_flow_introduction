@@ -26,6 +26,8 @@ print(len(train), 'training examples')
 print(len(val), 'validation examples')
 print(len(test), 'test examples')
 
+print(type(train))
+
 def df_to_dataset(dataframe, shuffle=True, batch_size=32):
   df = dataframe.copy()
   labels = df.pop('target')
@@ -36,6 +38,16 @@ def df_to_dataset(dataframe, shuffle=True, batch_size=32):
   ds = ds.batch(batch_size)
   ds = ds.prefetch(batch_size)
   return ds
+
+batch_size = 5
+train_ds = df_to_dataset(train, batch_size=batch_size)
+
+[(train_features, label_batch)] = train_ds.take(1)
+print('Every feature:', list(train_features.keys()))
+print('A batch of ages:', train_features['Age'])
+print('A batch of targets:', label_batch )
+
+#TODO: Model creation: Model is not created please help me here 
 
 layer1 = tf.keras.layers.Dense(20, activation=tf.nn.relu)
 layer2 = tf.keras.layers.Dense(15, activation=tf.nn.relu)
