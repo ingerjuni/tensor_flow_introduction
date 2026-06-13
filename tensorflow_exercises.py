@@ -26,9 +26,20 @@ print(len(train), 'training examples')
 print(len(val), 'validation examples')
 print(len(test), 'test examples')
 
-layer1 = tf.keras.layers.Dense(100, activation=tf.nn.relu)
-layer2 = tf.keras.layers.Dense(75, activation=tf.nn.relu)
-layer3 = tf.keras.layers.Dense(50, activation=tf.nn.relu)
+def df_to_dataset(dataframe, shuffle=True, batch_size=32):
+  df = dataframe.copy()
+  labels = df.pop('target')
+  df = {key: value.to_numpy()[:,tf.newaxis] for key, value in df.items()}
+  ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
+  if shuffle:
+    ds = ds.shuffle(buffer_size=len(dataframe))
+  ds = ds.batch(batch_size)
+  ds = ds.prefetch(batch_size)
+  return ds
+
+layer1 = tf.keras.layers.Dense(20, activation=tf.nn.relu)
+layer2 = tf.keras.layers.Dense(15, activation=tf.nn.relu)
+layer3 = tf.keras.layers.Dense(5, activation=tf.nn.relu)
 
 model = tf.keras.Sequential([layer1, layer2, layer3])
 
