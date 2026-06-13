@@ -34,5 +34,6 @@ layer3 = tf.keras.layers.Dense(123, activation=tf.nn.relu)
 model = tf.keras.Sequential([layer1, layer2, layer3])
 print("Happy useless code :)")
 
-
-
+#TODO: Model compilation: Model is not compiled 
+#TODO: Model Training: Model is not trained 
+#TODO: Make a test run and check the performance of the model
