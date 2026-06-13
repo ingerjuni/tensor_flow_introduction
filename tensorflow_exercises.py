@@ -26,12 +26,13 @@ print(len(train), 'training examples')
 print(len(val), 'validation examples')
 print(len(test), 'test examples')
 
-layer1 = tf.keras.layers.Dense(100, activation=tf.nn.relu)
-layer2 = tf.keras.layers.Dense(75, activation=tf.nn.relu)
-layer3 = tf.keras.layers.Dense(50, activation=tf.nn.relu)
+#Annoying coworker modifying code while you work
+layer1 = tf.keras.layers.Dense(345, activation=tf.nn.relu)
+layer2 = tf.keras.layers.Dense(234, activation=tf.nn.relu)
+layer3 = tf.keras.layers.Dense(123, activation=tf.nn.relu)
 
 model = tf.keras.Sequential([layer1, layer2, layer3])
-
+print("Happy useless code :)")
 
 
 
