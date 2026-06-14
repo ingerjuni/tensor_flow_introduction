@@ -20,7 +20,8 @@ df['target'] = np.where(df['AdoptionSpeed']==4, 0, 1)
 # Drop unused features.
 df = df.drop(columns=['AdoptionSpeed', 'Description'])
 
-train, val, test = np.split(df.sample(frac=1), [int(0.8*len(df)), int(0.9*len(df))])
+train, temp = train_test_split(df, test_size=0.2, random_state=42)
+val, test = train_test_split(temp, test_size=0.5, random_state=42)
 
 print(len(train), 'training examples')
 print(len(val), 'validation examples')
